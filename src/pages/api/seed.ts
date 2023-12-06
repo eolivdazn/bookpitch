@@ -76,7 +76,7 @@ export default async function handler(
                     "https://picsum.photos/200/300?image=2",
                     "https://picsum.photos/200/300?image=3",
                 ],
-                open_time: "14:30:00.000Z",
+                open_time: "12:30:00.000Z",
                 close_time: "23:30:00.000Z",
                 slug: "sarc-simple-the-best",
                 location_id: guimaraesLocationId,

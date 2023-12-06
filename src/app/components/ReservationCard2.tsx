@@ -6,17 +6,22 @@ import DatePicker from "react-datepicker";
 
 import {CircularProgress} from "@mui/material";
 import Link from "next/link";
-import UseMutipleAvailabilities from "../../../hooks/UseMutipleAvailabilities";
+// import UseMutipleAvailabilities from "../../../hooks/UseMutipleAvailabilitiesBySport";
+import {useRouter} from "next/navigation";
+
 
 
 export default function ReservationCard2({openTime,closingTime, sports}: { openTime: string, closingTime: string, sports: {name: string}[] }) {
+    const router = useRouter()
+
     const [startDate, setStartDate] = useState(new Date());
     const [day, setDay] = useState(new Date().toISOString().split("T")[0]);
     const [time, setTime] = useState(openTime)
     const [changeData, setChangeData] = useState(true)
+    const [optionSport, setOptionSport] = useState(sports[0].name)
 
-    const {findMultipleSlots,loading,error,data} = UseMutipleAvailabilities()
-
+    // const {findMultipleSlotsBySports,loading,error,data} = UseMutipleAvailabilities()
+    const loading = false
     const handleDateChange = (date: Date) => {
         if (date) {
             setDay(date.toISOString().split("T")[0])
@@ -31,13 +36,15 @@ export default function ReservationCard2({openTime,closingTime, sports}: { openT
         })
     }
 
-    const handleClick = async () => {
-        await findMultipleSlots({
-            day,
-            time
-        })
+    const handleClickFindMultipleSports = async () => {
+        // await findMultipleSlotsBySports({
+        //     day,
+        //     time,
+        //     sport: optionSport
+        // })
+        if (optionSport === '' || day === '' || time === '') return;
+        router.push(`/search?sport=${optionSport}&day=${day}&time=${time}`)
         setChangeData(true)
-        console.log(data,"handleClick")
     }
 
 
@@ -74,11 +81,12 @@ export default function ReservationCard2({openTime,closingTime, sports}: { openT
                 </div>
                 <div className="flex flex-col w-[48%]">
                     <label htmlFor="">Sport</label>
-                    <select name="" id="" className="bg-white py-3 border-b font-light" value={sports[0].name}
+                    <select name="" id="" className="bg-white py-3 border-b font-light" value={optionSport}
                             onChange={
                                 (e) => {
-                                    setTime(e.target.value);
                                     setChangeData(false)
+                                    setOptionSport(e.target.value)
+
                                 }
                             }
                     >
@@ -89,7 +97,7 @@ export default function ReservationCard2({openTime,closingTime, sports}: { openT
             </div>
             <div className="mt-5">
                 <button
-                    onClick={handleClick}
+                    onClick={handleClickFindMultipleSports}
                     // disabled={loading}
                     className="bg-red-600 rounded w-full lg:px-4 text-white font-bold lg:h-16 h-10"
                 >
@@ -99,22 +107,6 @@ export default function ReservationCard2({openTime,closingTime, sports}: { openT
                      }
                 </button>
             </div>
-            {data && changeData ? <div className="text-center  font-bold">
-                <h4 className="text-black mr-2 text-lg border-b">Available times</h4>
-                <div  className="bg-white py-3 font-light text-white flex flex-wrap">
-                    {/*{data.map(( time:any  , index:any) => (*/}
-                    {/*    time ?*/}
-                    {/*        (<Link*/}
-                    {/*            className=" bg-red-600 rounded cursor-pointer  p-2 w-24 text-white mr-3 mb-3 disabled"*/}
-                    {/*            key={index}*/}
-                    {/*            href={`reserve/${slug}?&day=${day}&time=${time}`}*/}
-                    {/*        >*/}
-                    {/*            {times.find(x => x.time === time)?.displayTime}*/}
-                    {/*        </Link>)*/}
-                    {/*        :   (<p className="bg-gray-300 p-2 w-24 mb-3 rounded mr-3"></p>)*/}
-                    {/*))}*/}
-                </div>
-            </div>: null}
         </div>
 
     );

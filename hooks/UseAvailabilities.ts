@@ -17,7 +17,6 @@ export default function UseAvailabilities() {
                             time
                         }
                     })
-            console.log(response.data,"response.data")
             setData(response.data)
             setLoading(false)
 

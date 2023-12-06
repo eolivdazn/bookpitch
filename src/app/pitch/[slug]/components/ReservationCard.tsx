@@ -38,7 +38,6 @@ export default function ReservationCard({openTime,closingTime,slug}: { openTime:
             time
         })
         setChangeData(true)
-        console.log(data,"handleClick")
     }
 
 

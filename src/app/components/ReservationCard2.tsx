@@ -1,24 +1,31 @@
 "use client";
-import React, { useState} from "react";
+import React, {useState} from "react";
 import {times} from "../../../data/times";
 import DatePicker from "react-datepicker";
 
 
 import {CircularProgress} from "@mui/material";
-import Link from "next/link";
-// import UseMutipleAvailabilities from "../../../hooks/UseMutipleAvailabilitiesBySport";
 import {useRouter} from "next/navigation";
+import {SearchParams} from "@/app/search/page";
 
 
-
-export default function ReservationCard2({openTime,closingTime, sports}: { openTime: string, closingTime: string, sports: {name: string}[] }) {
+export default function ReservationCard2({openTime, closingTime, sports, location, searchParams}: {
+    openTime: string,
+    closingTime: string,
+    sports: string[],
+    location: string[],
+    searchParams: SearchParams
+}) {
     const router = useRouter()
 
     const [startDate, setStartDate] = useState(new Date());
     const [day, setDay] = useState(new Date().toISOString().split("T")[0]);
     const [time, setTime] = useState(openTime)
     const [changeData, setChangeData] = useState(true)
-    const [optionSport, setOptionSport] = useState(sports[0].name)
+    const [optionSport, setOptionSport] = useState(searchParams.sport)
+    const [optionLocation, setOptionLocation] = useState(searchParams.location)
+
+    console.log(searchParams,"searchParams ReservationCard2")
 
     // const {findMultipleSlotsBySports,loading,error,data} = UseMutipleAvailabilities()
     const loading = false
@@ -30,8 +37,8 @@ export default function ReservationCard2({openTime,closingTime, sports}: { openT
         }
     }
 
-    const availableTimes = () =>{
-        return times.filter(time =>   {
+    const availableTimes = () => {
+        return times.filter(time => {
             return time.time >= openTime && time.time <= closingTime
         })
     }
@@ -42,8 +49,8 @@ export default function ReservationCard2({openTime,closingTime, sports}: { openT
         //     time,
         //     sport: optionSport
         // })
-        if (optionSport === '' || day === '' || time === '') return;
-        router.push(`/search?sport=${optionSport}&day=${day}&time=${time}`)
+        if (optionSport === '' || day === '' || time === '' || optionLocation === '') return;
+        router.push(`/search?sport=${optionSport}&day=${day}&time=${time}&location=${optionLocation}`)
         setChangeData(true)
     }
 
@@ -81,7 +88,7 @@ export default function ReservationCard2({openTime,closingTime, sports}: { openT
                 </div>
                 <div className="flex flex-col w-[48%]">
                     <label htmlFor="">Sport</label>
-                    <select name="" id="" className="bg-white py-3 border-b font-light" value={optionSport}
+                    <select name="" id="" className="bg-white py-3 border-b font-light" value={searchParams.sport}
                             onChange={
                                 (e) => {
                                     setChangeData(false)
@@ -91,7 +98,22 @@ export default function ReservationCard2({openTime,closingTime, sports}: { openT
                             }
                     >
                         {sports.map((sport, index) => (
-                            <option key={index} value={sport.name}>{sport.name}</option>))}
+                            <option key={index} value={sport}>{sport}</option>))}
+                    </select>
+                </div>
+                <div className="flex flex-col w-[48%]">
+                    <label htmlFor="">Location</label>
+                    <select name="" id="" className="bg-white py-3 border-b font-light" value={searchParams.location}
+                            onChange={
+                                (e) => {
+                                    setChangeData(false)
+                                    setOptionLocation(e.target.value)
+
+                                }
+                            }
+                    >
+                        {location.map((location, index) => (
+                            <option key={index} value={location}>{location}</option>))}
                     </select>
                 </div>
             </div>
@@ -104,7 +126,7 @@ export default function ReservationCard2({openTime,closingTime, sports}: { openT
                     {loading ?
                         <CircularProgress className="text-white"/> :
                         <>Find a free slot</>
-                     }
+                    }
                 </button>
             </div>
         </div>

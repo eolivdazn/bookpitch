@@ -1,16 +1,17 @@
-// import HeaderSearch from "./componenets/HeaderSearch";
-// import SideBarSearch from "./componenets/SideBarSearch";
-// import RestaurantCardSearch from "./componenets/RestaurantCardSearch";
 import { PrismaClient} from "@prisma/client";
 import PitchCard from "@/app/components/PitchCard";
 import SideBarSearch from "@/app/search/componenets/SideBarSearch";
+import ReservationCard2 from "@/app/components/ReservationCard2";
+import BookSlot from "@/app/components/BookSlot";
 
 const prisma = new PrismaClient();
 
-interface SearchParams {
+export interface SearchParams {
     sport?: string;
     location?: string;
     surface?: string;
+    day?: string;
+    time?: string;
 }
 
 
@@ -50,12 +51,6 @@ const fetchPitchesByParams = (searchParams: SearchParams) => {
             },
         };
     }
-    // if (searchParams.surface) {
-    //     where.surface = {
-    //         equals: searchParams.surface,
-    //     };
-    // }
-
 
     return prisma.pitch.findMany({
         where,
@@ -68,7 +63,8 @@ const fetchPitchesByParams = (searchParams: SearchParams) => {
             sport: true,
             location: true,
             size: true,
-            main_image: true
+            main_image: true,
+            slug: true
 
         }
     });
@@ -82,7 +78,11 @@ export default async function Search({searchParams}: {
     const sports = await fetchBySports()
     const pitches = await fetchPitchesByParams(searchParams)
     return (
+
         <div className="text-black">
+            <div className="relative text-reg text-black  ">
+                <ReservationCard2 openTime={'08:00:00.000Z'} closingTime={'23:00:00.000Z'} sports={sports} location={locations} searchParams={searchParams} />
+            </div>
             {/*<HeaderSearch/>*/}
             <div className="flex py-4 m-auto w-2/3 justify-between items-start">
                 <SideBarSearch location={locations} searchParams={searchParams} sport={sports}/>
@@ -91,7 +91,7 @@ export default async function Search({searchParams}: {
                         <p>No restaurants found</p>
                     ) : (
                         pitches.map((pitch,index) => (
-                            <PitchCard pitch={pitch} key={index}/>
+                            <PitchCard pitch={pitch} key={index} searchParams={searchParams}/>
 
                         ))
                     )}

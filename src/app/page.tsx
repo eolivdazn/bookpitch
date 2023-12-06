@@ -33,7 +33,7 @@ const fetchSports = async (): Promise<any[]> => {
         name: true,
         },
     })
-    return sports;
+    return sports.map((sport) => sport.name)
 
 }
 
@@ -52,6 +52,7 @@ export default async function Home() {
 
         <div className="py-3 px-36 mt-10 flex flex-wrap justify-center">
           {pitches.map((pitch ,index) => (
+
               <PitchCard
                   pitch={pitch} key={index}
               />

@@ -3,12 +3,15 @@
 // import ReviewCount from "./ReviewCount";
 // import ReviewStars from "./ReviewStars";
 import Link from "next/link";
+import BookSlot from "@/app/components/BookSlot";
+import {SearchParams} from "@/app/search/page";
 
 interface Props {
     pitch: any;
+    searchParams: SearchParams
 }
 
-export default function PitchCard({ pitch }: Props){
+export default function PitchCard({ pitch, searchParams }: Props){
     return(
         <Link href={`/pitch/${pitch.slug}`}>
             <div className="text-black">
@@ -22,8 +25,6 @@ export default function PitchCard({ pitch }: Props){
                     <div className="p-1">
                         <h3 className="font-bold text-2xl mb-2">{pitch.name}</h3>
                         <div className="flex items-start">
-                            {/*<ReviewStars reviewRate={review}/>*/}
-                            {/*<ReviewCount review={review}/>*/}
 
                         </div>
                         <div className="text-reg font-light capitalize">
@@ -34,6 +35,7 @@ export default function PitchCard({ pitch }: Props){
                             <p className=" mr-3">Surface: {pitch.size.name}</p>
                             <p className=" mr-3">Outdoor: {pitch.outdoor}</p>
                         </div>
+                        <BookSlot searchParams={searchParams} slug={pitch.slug}/>
                     </div>
                 </div>
                 {/* CARD */}

@@ -28,7 +28,7 @@ model Pitch {
   sport       Sport     @relation(fields: [sport_id], references: [id])
   surface     Surface   @relation(fields: [surface_id], references: [id])
   surface_id  Int
-  Size        Size      @relation(fields: [size_id], references: [id])
+  size        Size      @relation(fields: [size_id], references: [id])
   size_id     Int
   created_at  DateTime  @default(now())
   updated_at  DateTime  @updatedAt

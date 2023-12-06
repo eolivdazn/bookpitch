@@ -2,16 +2,16 @@ import { PrismaClient} from "@prisma/client";
 import PitchCard from "@/app/components/PitchCard";
 import SideBarSearch from "@/app/search/componenets/SideBarSearch";
 import ReservationCard2 from "@/app/components/ReservationCard2";
-import BookSlot from "@/app/components/BookSlot";
+// import {useState} from "react";
 
 const prisma = new PrismaClient();
 
 export interface SearchParams {
-    sport?: string;
+    sport: string;
     location?: string;
     surface?: string;
-    day?: string;
-    time?: string;
+    day: string;
+    time: string;
 }
 
 
@@ -77,18 +77,21 @@ export default async function Search({searchParams}: {
     const locations = await fetchByLocation()
     const sports = await fetchBySports()
     const pitches = await fetchPitchesByParams(searchParams)
+console.log(searchParams,"searchParams search")
+    // const [changePitches, setChangePitches] = useState(pitches)
     return (
 
         <div className="text-black">
             <div className="relative text-reg text-black  ">
-                <ReservationCard2 openTime={'08:00:00.000Z'} closingTime={'23:00:00.000Z'} sports={sports} location={locations} searchParams={searchParams} />
+                <ReservationCard2 openTime={'08:00:00.000Z'} closingTime={'23:00:00.000Z'}
+                                  sports={sports} location={locations} searchParams={searchParams} />
             </div>
             {/*<HeaderSearch/>*/}
             <div className="flex py-4 m-auto w-2/3 justify-between items-start">
                 <SideBarSearch location={locations} searchParams={searchParams} sport={sports}/>
-                <div className="w-5/6">
+                <div className="w-5/6 lg:flex">
                     {!pitches || pitches.length === 0 ? (
-                        <p>No restaurants found</p>
+                        <p>No pitch found</p>
                     ) : (
                         pitches.map((pitch,index) => (
                             <PitchCard pitch={pitch} key={index} searchParams={searchParams}/>

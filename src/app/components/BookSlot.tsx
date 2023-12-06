@@ -13,29 +13,22 @@ export default function BookSlot({searchParams, slug}: {
 }) {
     const {findSlot,loading,error,data} = UseAvailabilities()
 
-    // console.log(searchParams.time,"searchParams time BookSlot")
-    // console.log(slug,"pitch BookSlot")
-
     if (searchParams.day === undefined || searchParams.time === undefined) return null
 
     useEffect(() => {
-        findSlot({
+         findSlot({
             day: searchParams.day,
             slug,
             time: searchParams.time
         })
-    },[])
-    // console.log(slug,"slug BookSlot")
-    //
-    // console.log(data,"data BookSlot")
-
-
-
+    },[data])
 
     return (
         <div>
-            {data ? <div className="text-center  font-bold">
-                <h4 className="text-black mr-2 text-lg border-b">Available times</h4>
+            <div className="text-center  font-bold">
+            <h4 className="text-black mr-2 text-lg border-b">Available slots</h4>
+            {data && data.length > 0 ?
+
                 <div  className="bg-white py-3 font-light text-white flex flex-wrap">
                     {data.map(( time:any  , index:any) => (
                         time ?
@@ -46,10 +39,11 @@ export default function BookSlot({searchParams, slug}: {
                             >
                                 {times.find(x => x.time === time)?.displayTime}
                             </Link>)
-                            :   (<p className="bg-gray-300 p-2 w-24 mb-3 rounded mr-3"></p>)
+                            :   (<p className="bg-gray-300 p-4 w-24 mb-3 rounded mr-3">No available slots</p>)
                     ))}
-                </div>
-            </div>: null}
+
+            </div>: <p className="bg-gray-300 p-2 w-24 mb-3 mt-2 rounded mr-3">No slots</p>}
+            </div>
         </div>
 
     );

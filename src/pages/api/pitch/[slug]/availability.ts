@@ -35,7 +35,11 @@ export default async function handler(
 
     const searchTimes = times.find(t => t.time === time)?.searchTimes || []
 
-    if(!searchTimes){
+    const availableSlots = searchTimes.filter(time => {
+        return (pitch.open_time < time && pitch.close_time > time);
+    })
+
+    if(!availableSlots){
         return res.status(400).json({
             message: 'pitch is closed'
         })
@@ -56,7 +60,7 @@ export default async function handler(
     //     .filter(t => t.time >= restaurant.open_time && t.time <= restaurant.close_time)
 
 
-    return res.status(200).json(searchTimes)
+    return res.status(200).json(availableSlots)
 
 
 

@@ -124,6 +124,26 @@ export default async function handler(
                 surface_id: syntheticId,
                 size_id: fiveSizeId,
                 outdoor: OUTDOOR.YES,
+            },
+            {
+                name: "Fafe - SC",
+                main_image:
+                    "https://picsum.photos/200/300?image=9",
+                price: 38,
+                description:
+                    "Com fafe sempre na frente",
+                images: [
+                    "https://picsum.photos/200/300?image=11",
+                    "https://picsum.photos/200/300?image=10",
+                ],
+                open_time: "08:30:00.000Z",
+                close_time: "20:30:00.000Z",
+                slug: "fafe-sc",
+                location_id: fafeLocationId,
+                sport_id: footballSportId,
+                surface_id: woodId,
+                size_id: fiveSizeId,
+                outdoor: OUTDOOR.YES,
             }
         ],
     });

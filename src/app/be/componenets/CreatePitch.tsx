@@ -24,7 +24,7 @@ export default function CreatePitch({data}: { data: Props }) {
     const [locationData, setLocationData] = useState(data.location[0]);
     const [sportData, setSportData] = useState(data.sport[0]);
     const [nameData, setNameData] = useState<string>('');
-    const [openTimeData, setOpenTimeData] = useState(times[0].displayTime);
+    const [openTimeData, setOpenTimeData] = useState("00:00:00.000Z");
     const [closeTimeData, setCloseTimeData] = useState(times[times.length - 1].displayTime);
     const [surfaceData, setSurfaceData] = useState(data.surface[1]);
     const [sizeData, setSizeData] = useState(data.size[0]);
@@ -147,8 +147,8 @@ export default function CreatePitch({data}: { data: Props }) {
 
                         </div>
                         <div className={"my-3 flex justify-items-center"}>
-                            <Time timeData={openTimeData} setTimeData={setOpenTimeData} title={"Open"}/>
-                            <Time timeData={closeTimeData} setTimeData={setCloseTimeData} title={"Close"}/>
+                            <Time timeData={openTimeData} setTimeData={setOpenTimeData} filterTime={"00:00:00.000Z"} title={"Open"}/>
+                            {openTimeData !== "00:00:00.000Z" ? <Time timeData={closeTimeData} setTimeData={setCloseTimeData} filterTime={openTimeData} title={"Close"}/> : null}
                         </div>
                         <div className="mb-4">
                             <button

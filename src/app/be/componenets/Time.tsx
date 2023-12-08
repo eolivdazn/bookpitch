@@ -1,6 +1,6 @@
 import {times} from "../../../../data/times";
 
-export default function Time({timeData, setTimeData, title}: { timeData: string, setTimeData: any, title: string}) {
+export default function Time({timeData,filterTime, setTimeData, title}: {filterTime:string, timeData: any, setTimeData: any, title: string}) {
     return (
         <div className="mb-4">
             <label htmlFor="">{title} Time</label>
@@ -9,11 +9,12 @@ export default function Time({timeData, setTimeData, title}: { timeData: string,
                     value={timeData}
                     onChange={
                         (e) => {
+                            console.log(e.target.value, "e.target.value")
                             setTimeData(e.target.value);
                         }
                     }
             >
-                {times.map((time, index) => (
+                {times.filter((time, index) => (time.time >= filterTime)).map((time, index) => (
                     <option key={index} value={time.time}>{time.displayTime}</option>))}
             </select>
         </div>

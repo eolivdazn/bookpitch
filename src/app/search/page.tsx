@@ -64,7 +64,8 @@ const fetchPitchesByParams = (searchParams: SearchParams) => {
             location: true,
             size: true,
             main_image: true,
-            slug: true
+            slug: true,
+            outdoor: true
 
         }
     });
@@ -87,9 +88,9 @@ console.log(searchParams,"searchParams search")
                                   sports={sports} location={locations} searchParams={searchParams} />
             </div>
             {/*<HeaderSearch/>*/}
-            <div className="flex py-4 m-auto w-2/3 justify-between items-start">
+            <div className="flex py-4 m-auto sm:ml-2 lg:w-2/3 justify-between items-start">
                 <SideBarSearch location={locations} searchParams={searchParams} sport={sports}/>
-                <div className="w-5/6 lg:flex">
+                <div className="w-full lg:flex flex flex-wrap justify-left">
                     {!pitches || pitches.length === 0 ? (
                         <p>No pitch found</p>
                     ) : (

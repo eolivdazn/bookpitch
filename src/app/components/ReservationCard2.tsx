@@ -22,9 +22,8 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
     const [startDate, setStartDate] = useState(new Date());
     const [day, setDay] = useState(new Date().toISOString().split("T")[0]);
     const [time, setTime] = useState(openTime)
-    const [changeData, setChangeData] = useState(true)
-    const [optionSport, setOptionSport] = useState(searchParams.sport)
-    const [optionLocation, setOptionLocation] = useState(searchParams.location)
+    const [optionSport, setOptionSport] = useState(searchParams?.sport || sports[0])
+    const [optionLocation, setOptionLocation] = useState(searchParams?.location || location[0])
 
 
     const loading = false
@@ -32,7 +31,6 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
         if (date) {
             setDay(date.toISOString().split("T")[0])
             setStartDate(date)
-            setChangeData(false)
             router.push(`/search?sport=${optionSport}&day=${day}&time=${time}&location=${optionLocation}`)
         }
     }
@@ -46,7 +44,6 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
     const handleClickFindSlots = async () => {
         if (optionSport === '' || day === '' || time === '' || optionLocation === '') return;
         router.push(`/search?sport=${optionSport}&day=${day}&time=${time}&location=${optionLocation}`)
-        setChangeData(true)
     }
 
 
@@ -72,9 +69,9 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
                             onChange={
 
                                 (e) => {
-                                    router.push(`/search?sport=${optionSport}&day=${day}&time=${e.target.value}&location=${optionLocation}`)
                                     setTime(e.target.value);
-                                    setChangeData(false)
+                                    router.push(`/search?sport=${optionSport}&day=${day}&time=${e.target.value}&location=${optionLocation}`)
+
                                 }
                             }
 
@@ -88,9 +85,9 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
                     <select name="" id="" className="bg-white py-3 border-b font-light" value={optionSport}
                             onChange={
                                 (e) => {
-                                    setChangeData(false)
-                                    router.push(`/search?sport=${e.target.value}&day=${day}&time=${time}&location=${optionLocation}`)
                                     setOptionSport(e.target.value)
+                                    router.push(`/search?sport=${e.target.value}&day=${day}&time=${time}&location=${optionLocation}`)
+
 
                                 }
                             }
@@ -104,7 +101,6 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
                     <select name="" id="" className="bg-white py-3 border-b font-light" value={optionLocation}
                             onChange={
                                 (e) => {
-                                    setChangeData(false)
                                     setOptionLocation(e.target.value)
                                     router.push(`/search?sport=${optionSport}&day=${day}&time=${time}&location=${e.target.value}`)
 

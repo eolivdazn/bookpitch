@@ -12,10 +12,9 @@ export default function SideBarSearch(
             searchParams?: { sport?: string, location?: string, price?: string}
         }) {
     return (
-        <div className="w-1/5">
+        <div className="w-1/5 ml-2">
             <div className="border-b pb-4 mr-4 flex flex-col">
                 <h1 className="mb-2">location</h1>
-
                 {location.map((location: string) => (
                     <Link
                         href={{
@@ -26,7 +25,6 @@ export default function SideBarSearch(
                             }
                         }}
                         className={"capitalize font-light text-reg" + (searchParams?.location === location ? ' font-extrabold' : '')}>{location}</Link>
-                    //     <div className={"btn-group pull-right " + (this.props.showBulkActions ? 'show' : 'hidden')}>
                 ))}
 
             </div>

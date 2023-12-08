@@ -25,8 +25,7 @@ export default function PitchCard({ pitch, searchParams }: Props){
                     <div className="p-1">
                         <h3 className="font-bold text-2xl mb-2">{pitch.name}</h3>
                         <div className="flex items-start">
-
-                        </div>
+                    </div>
                         <div className="text-reg font-light capitalize">
                             <p className=" mr-3">Sport: {pitch.sport.name}</p>
                             <p className=" mr-3" >Price/hour: {pitch.price} €</p>

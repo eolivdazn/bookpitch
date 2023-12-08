@@ -1,6 +1,6 @@
 export const times = [
     {
-        displayTime: "12:00 AM",
+        displayTime: "00:00 AM",
         time: "00:00:00.000Z",
         searchTimes: [
             "00:00:00.000Z",

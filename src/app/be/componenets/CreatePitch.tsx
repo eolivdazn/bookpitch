@@ -20,7 +20,7 @@ export interface pitchProps {
     name: string;
 }
 
-export default function CreatePitch({data}: { data: Props }) {
+export default function CreatePitch({data,showForm, setShowForm}: { data: Props, showForm:boolean, setShowForm: any }) {
     const [locationData, setLocationData] = useState(data.location[0]);
     const [sportData, setSportData] = useState(data.sport[0]);
     const [nameData, setNameData] = useState<string>('');
@@ -53,17 +53,13 @@ export default function CreatePitch({data}: { data: Props }) {
     }
 
     return (
-        <div>
-            {!createPitchData || error ?
-                <div
-                    className=" text-black absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center">
-
+        <>
+            {showForm && !createPitchData ?
+                <div className=" text-black absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center">
                     <div className="bg-white rounded shadow p-6 m-4 max-w-xs max-h-full text-center">
+                        <div onClick={() => {setShowForm(false)}} className={" mb-1 text-right text-red-600"}>x</div>
                         {error ? <Alert severity="error">Error creating pitch</Alert> : null}
-                        <div className="mb-4">
-                            <h1 className="text-xl font-bold">Create</h1>
-                            <p className="text-gray-500 text-sm">Create a new pitch</p>
-                        </div>
+                            <p className=" flex justify-center mb-1 text-gray-500 text-sm">Create a new pitch</p>
                         <div className="mb-4">
                             <input
                                 type="text"
@@ -164,12 +160,12 @@ export default function CreatePitch({data}: { data: Props }) {
                         </div>
                     </div>
                 </div> : (
-                    <div onClick={() => window.location.reload()} className=" text-black absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center">
+                    <div onClick={() => {setShowForm(false)} } className=" text-black absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center">
                     <Alert severity="success">Pitch "{createPitchData?.name}" created with success</Alert>
                     </div>
                 )}
 
-        </div>
+        </>
 
     )
         ;

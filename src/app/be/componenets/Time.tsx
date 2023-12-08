@@ -15,7 +15,7 @@ export default function Time({timeData,filterTime, setTimeData, title}: {filterT
                     }
             >
                 {times.filter((time) =>
-                    (time.time >= filterTime)).map((time, index) => (
+                    (time.time > filterTime)).map((time, index) => (
                     <option key={index} value={time.time}>{time.displayTime}</option>))}
             </select>
         </div>

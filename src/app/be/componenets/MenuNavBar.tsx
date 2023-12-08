@@ -42,8 +42,7 @@ export default function MenuNavBar( {data}:{data: Props}){
                         sport: data.sport,
                         surface: data.surface,
                         size: data.size
-                    }
-                }/>: null}
+                    } } showForm={create} setShowForm={setCreate}/>: null}
             </div>
         </nav>
     );

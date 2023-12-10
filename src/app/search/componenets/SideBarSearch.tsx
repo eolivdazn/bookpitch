@@ -24,7 +24,7 @@ export default function SideBarSearch(
                                 location: location
                             }
                         }}
-                        className={"capitalize font-light text-reg" + (searchParams?.location === location ? ' font-extrabold' : '')}>{location}</Link>
+                        className={"capitalize  text-reg" + (searchParams?.location === location ? ' font-bold' : ' font-light')}>{location}</Link>
                 ))}
 
             </div>
@@ -38,24 +38,9 @@ export default function SideBarSearch(
                             sport: sport
                         }
                     }}
-                          className={"capitalize font-light text-reg" + (searchParams?.sport === sport ? ' font-extrabold' : '')}>{sport}</Link>
+                          className={"capitalize text-reg" + (searchParams?.sport === sport ? ' font-bold' : ' font-light')}>{sport}</Link>
                 ))}
             </div>
-            {/*<div className=" mt-3 pb-4 mr-4">*/}
-            {/*    <h1 className="mb-2">Price</h1>*/}
-            {/*    <div className="flex">*/}
-            {/*        {PRICE_MAP.map(({price,label,className}) => (*/}
-            {/*            <Link href={{*/}
-            {/*                pathname: '/search',*/}
-            {/*                query: {*/}
-            {/*                    ...searchParams,*/}
-            {/*                    price*/}
-            {/*                }*/}
-            {/*            }}*/}
-            {/*                  className={className}>{label}</Link>*/}
-            {/*        ))}*/}
-            {/*    </div>*/}
-            {/*</div>*/}
         </div>
     )
 }

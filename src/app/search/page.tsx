@@ -78,7 +78,6 @@ export default async function Search({searchParams}: {
     const locations = await fetchByLocation()
     const sports = await fetchBySports()
     const pitches = await fetchPitchesByParams(searchParams)
-console.log(searchParams,"searchParams search")
     // const [changePitches, setChangePitches] = useState(pitches)
     return (
 

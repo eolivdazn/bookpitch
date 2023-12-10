@@ -9,7 +9,6 @@ export default function Time({timeData,filterTime, setTimeData, title}: {filterT
                     value={timeData}
                     onChange={
                         (e) => {
-                            console.log(e.target.value, "e.target.value")
                             setTimeData(e.target.value);
                         }
                     }

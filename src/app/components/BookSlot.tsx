@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import {times} from "../../../data/times";
-// import React, {useEffect} from "react";
 import {SearchParams} from "@/app/search/page";
 import UseAvailabilities from "../../../hooks/UseAvailabilities";
 import {useEffect} from "react";
@@ -13,7 +12,8 @@ export default function BookSlot({searchParams, slug}: {
 }) {
     const {findSlot,data} = UseAvailabilities()
 
-    if (searchParams.day === undefined || searchParams.time === undefined || slug) return null
+    //TODO: fix this
+    // if (searchParams.day === undefined || searchParams.time === undefined || slug) return null
 
     useEffect(() => {
          findSlot({

@@ -15,7 +15,6 @@ export default function MenuNavBar( {data}:{data: Props}){
     const [create, setCreate] = useState(false)
     const {createPitchData} = UseCreatePitch()
 
-    console.log(createPitchData,"createPitchData MenuNAvBar")
 
     const handleClickCreate = async () => {
         setCreate(true)

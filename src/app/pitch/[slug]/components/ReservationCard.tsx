@@ -88,16 +88,16 @@ export default function ReservationCard({openTime,closingTime,slug}: { openTime:
             {data && changeData ? <div className="text-center  font-bold">
                 <h4 className="text-black mr-2 text-lg border-b">Available times</h4>
                 <div  className="bg-white py-3 font-light text-white flex flex-wrap">
-                    {data.map(( time:any  , index:any) => (
-                        time ?
+                    {data.map(( slot:any  , index:any) => (
+                        slot.available ?
                             (<Link
                                 className=" bg-red-600 rounded cursor-pointer  p-2 w-24 text-white mr-3 mb-3 disabled"
                                 key={index}
                                 href={`reserve/${slug}?&day=${day}&time=${time}`}
                             >
-                                {times.find(x => x.time === time)?.displayTime}
+                                {times.find(x => x.time === slot.time)?.displayTime}
                             </Link>)
-                            :   (<p className="bg-gray-300 p-2 w-24 mb-3 rounded mr-3"></p>)
+                            :   (<p className="bg-gray-300 p-2 w-24 mb-3 rounded mr-3">{times.find(x => x.time === slot.time)?.displayTime}</p>)
                     ))}
                 </div>
             </div>: null}

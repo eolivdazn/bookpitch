@@ -4,10 +4,13 @@ import useReserve from "../../../../../../hooks/UseReserve";
 import {CircularProgress} from "@mui/material";
 import {useEffect} from "react";
 import Link from "next/link";
+import usePayment from "../../../../../../hooks/UsePayment";
+import {displayTime} from "@/app/help/help";
 
-export default function Form({slug, day, time, name}: { slug: string, day: string, time: string, name: string }) {
+export default function Form({slug, day, time, name, amount}: { slug: string, day: string, time: string, name: string, amount:number }) {
 
     const {reservePitch, data, loading, error} = useReserve()
+    const {payment,dataPay} = usePayment()
     const [didBook, setDidBook] = React.useState(false)
 
     const [inputs, setInputs] = React.useState({
@@ -46,6 +49,9 @@ export default function Form({slug, day, time, name}: { slug: string, day: strin
             bookerOccasion: inputs.bookerOccasion,
             bookerRequest: inputs.bookerRequest,
         })
+        await payment({
+            amount
+        })
         setDidBook(true)
     }
     return (
@@ -54,19 +60,21 @@ export default function Form({slug, day, time, name}: { slug: string, day: strin
             <div className="lg:mt-10 mt:4 flex lg:flex-wrap justify-center lg:w-[660px]">
                 {!didBook ? <h3 className="font-bold ">you're almost done!</h3>  : <button className="bg-red-600 text-white rounded-2xl shadow p-4 mb-4">Congrats book done</button>}
             </div>
-            {data ? (
+            {data && dataPay ? (
                     <>
                         <h2 className="font-bold capitalize">Confirmation details</h2>
                         <div className="lg:mt-4 mt-2 shadow p-2 lg:flex flex-wrap justify-between lg:w-[660px]">
                             <ul>
                                 <li className="capitalize">Pitch: {name}</li>
-                                <li className="capitalize">Date: {data.booking.booking_time}</li>
+                                <li className="capitalize">Date: <span className={"font-bold"}>{displayTime(data.booking.booking_time.split('T')[1])} {data.booking.booking_time.split('T')[0] }</span></li>
                                 <li className="capitalize">Name: {data.booking.booker_first_name} {data.booking.booker_last_name}</li>
                                 <li className="">Email: {data.booking.booker_email}</li>
                                 <li className="capitalize">Phone: {data.booking.booker_phone}</li>
+                                <li className="capitalize">Payment id: {dataPay.id}</li>
+                                <li className="capitalize">Payment receipt: {dataPay.receipt_url}</li>
                             </ul>
                         </div>
-                        <Link href="/" className=" lg:w-[660px] border flex mt-8 justify-center p-4 px-4 rounded mr-3 bg-blue-400 text-white"> BookPitch </Link>
+                        <Link href="/search" className=" lg:w-[660px] border flex mt-8 justify-center p-4 px-4 rounded mr-3 bg-blue-400 text-white"> BookPitch </Link>
 
                     </>
 

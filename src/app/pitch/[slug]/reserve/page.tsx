@@ -49,7 +49,7 @@ async function ReservationPage(props:any) {
                         </div>
                     </div>
                 </div>
-                <Form day={searchParams.day} time={searchParams.time} slug={params.slug}  name={pitch.name}/>
+                <Form day={searchParams.day} time={searchParams.time} slug={params.slug} amount={pitch.price} name={pitch.name}/>
             </div>
         </div>
 

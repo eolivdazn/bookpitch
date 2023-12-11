@@ -18,17 +18,27 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
 }) {
     const router = useRouter()
 
+    if (!searchParams.location){
+        searchParams.location = location[0]
+    }
+    if (!searchParams.sport){
+        searchParams.sport = sports[0]
+    }
+
+
+
+
     const [startDate, setStartDate] = useState(new Date());
     const [day, setDay] = useState(new Date().toISOString().split("T")[0]);
     const [time, setTime] = useState(openTime)
-    const [optionSport, setOptionSport] = useState('football')
-    const [optionLocation, setOptionLocation] = useState('Guimaraes')
-    // if (searchParams.location !== optionLocation) {
-    //     setOptionLocation(searchParams.)
-    // }
-    // if (searchParams.sport!== optionSport) {
-    //     setOptionSport(searchParams.sport)
-    // }
+    const [optionSport, setOptionSport] = useState(searchParams.sport ? searchParams.sport : sports[0])
+    const [optionLocation, setOptionLocation] = useState(searchParams.location ? searchParams.location : 'Guimaraes')
+    if (searchParams.location !== optionLocation){
+        setOptionLocation(searchParams.location? searchParams.location : 'Guimaraes')
+    }
+    if (searchParams.sport !== optionSport){
+        setOptionSport(searchParams.sport)
+    }
 
     const loading = false
     const handleDateChange = (date: Date) => {
@@ -74,6 +84,8 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
 
                                 (e) => {
                                     setTime(e.target.value);
+                                    setOptionLocation(optionLocation)
+                                    setOptionSport(optionSport)
                                     router.push(`/search?sport=${optionSport}&day=${day}&time=${e.target.value}&location=${optionLocation}`)
 
                                 }

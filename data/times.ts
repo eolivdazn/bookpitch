@@ -83,10 +83,6 @@ export const times = [
     },
     {
         displayTime: "9:00 AM",
-        time: "08:30:00.000Z",
-    },
-    {
-        displayTime: "9:00 AM",
         time: "09:00:00.000Z",
         searchTimes: [
             "08:00:00.000Z",

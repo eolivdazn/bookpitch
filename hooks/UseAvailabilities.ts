@@ -4,7 +4,7 @@ import {useState} from "react";
 export default function UseAvailabilities() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
-    const [data, setData] = useState<{ time: any }[] | null>(null)
+    const [data, setData] = useState<{ time: string, available: boolean }[] | null>(null)
 
     const findSlot = async ({slug, day, time}: { slug: string, day: string, time: string }) => {
         setLoading(true)

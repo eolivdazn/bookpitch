@@ -14,6 +14,7 @@ interface Props {
 export default function PitchCard({ pitch, searchParams }: Props){
     return(
         <Link href={`/pitch/${pitch.slug}`}>
+            key={pitch.id}
             <div className="text-black">
                 {/* CARD */}
                 <div className="w-64 h-82 m-3 rounded overflow-hidden border cursor-pointer">

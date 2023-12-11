@@ -38,33 +38,47 @@ export default async function handler(
     const availableSlots = searchTimes.filter(time => {
         return (pitch.open_time < time && pitch.close_time > time);
     })
-
     if(!availableSlots){
         return res.status(400).json({
             message: 'pitch is closed'
         })
     }
 
+    const pitchId = await prisma.pitch.findUnique({
+        where: {
+            slug
+        },
+        select: {
+            id: true
+        }
+    })
+    if (!pitchId){
+        return res.status(404).json({
+            message: 'pitch not found'
+        })
+    }
 
 
-    // //number of available seats
-    // const availableSeats = searchTimeTables.map(t => {
-    //     const numberOfSeats =t.tables.reduce((total, table) => {
-    //         return total + table.seats
-    //     }, 0)
-    //     return{
-    //         time: t.time,
-    //         seats: parseInt(partySize) <= numberOfSeats
-    //     }
-    // })//remove closed times
-    //     .filter(t => t.time >= restaurant.open_time && t.time <= restaurant.close_time)
+    const bookingsTimes = await prisma.booking.findMany({
+        where: {
+            booking_time: {
+                gt:  new Date(`${day}T00:00:00.000Z`).toISOString(),
+                lte:  new Date(`${day}T23:00:00.000Z`).toISOString(),
 
+            },
+            pitch_id: {
+                equals: pitchId.id
+            },
+        },
+        select: {
+            booking_time: true
+        }
 
-    return res.status(200).json(availableSlots)
-
-
-
-}
+    }).then((bookings) => bookings.map((booking) => booking.booking_time.toISOString().split('T')[1]))
+const result =  availableSlots.map((slot) =>
+    !bookingsTimes.includes(slot))
+    .map((available, index) => ({time: availableSlots[index], available}))
+    return res.status(200).json(result)}
 
 
 // http://localhost:3000/api/restaurant/vivaan-fine-indian-cuisine-ottawa/availability?partySize=1&day=2023-11-21&time=15:30:00.000Z

@@ -10,6 +10,7 @@ export default function SideBarSearch(
             location: string[],
             sport: string[],
             searchParams?: { sport?: string, location?: string, price?: string}
+
         }) {
     return (
         <div className="w-1/5 ml-2">

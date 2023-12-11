@@ -24,15 +24,14 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
     const [startDate, setStartDate] = useState(new Date());
     const [day, setDay] = useState(new Date().toISOString().split("T")[0]);
     const [time, setTime] = useState(openTime)
-    const [optionSport, setOptionSport] = useState(searchParams.sport)
-    const [optionLocation, setOptionLocation] = useState(searchParams.location)
-    console.log(optionLocation, "optionLocation")
-    if (searchParams.location!== optionLocation) {
-        setOptionLocation(searchParams.location)
-    }
-    if (searchParams.sport!== optionSport) {
-        setOptionSport(searchParams.sport)
-    }
+    const [optionSport, setOptionSport] = useState('football')
+    const [optionLocation, setOptionLocation] = useState('Guimaraes')
+    // if (searchParams.location !== optionLocation) {
+    //     setOptionLocation(searchParams.)
+    // }
+    // if (searchParams.sport!== optionSport) {
+    //     setOptionSport(searchParams.sport)
+    // }
 
     const loading = false
     const handleDateChange = (date: Date) => {

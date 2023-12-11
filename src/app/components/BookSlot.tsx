@@ -33,13 +33,13 @@ export default  function BookSlot({searchParams, slug}: {
                     {data.map(( slot:any ) => (
                         slot.available ?
                             (<Link
-                                className=" bg-red-600 rounded cursor-pointer  p-2 w-24 text-white mr-3 mb-3"
+                                className=" bg-red-600 rounded cursor-pointer  p-2 w-18 text-white ml-1 mr-1 mb-1"
                                 key={slot.time}
                                 href={`pitch/${slug}/reserve?&day=${searchParams.day}&time=${searchParams.time}`}
                             >
                                 {times.find(x => x.time === slot.time)?.displayTime}
                             </Link>)
-                            :   (<p className="bg-gray-300 p-2 w-24 mb-3 rounded mr-3">
+                            :   (<p className="bg-gray-300 p-2 w-18 ml-1 mb-1 rounded mr-1">
                                 {times.find(x => x.time === slot.time)?.displayTime}
                             </p>)
                     ))}

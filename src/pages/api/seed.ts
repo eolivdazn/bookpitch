@@ -10,6 +10,7 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<Data>
 ) {
+    await prisma.booking.deleteMany();
     await prisma.pitch.deleteMany();
     await prisma.location.deleteMany();
     await prisma.sport.deleteMany();
@@ -76,8 +77,8 @@ export default async function handler(
                     "https://picsum.photos/200/300?image=2",
                     "https://picsum.photos/200/300?image=3",
                 ],
-                open_time: "12:30:00.000Z",
-                close_time: "23:30:00.000Z",
+                open_time: "12:00:00.000Z",
+                close_time: "23:00:00.000Z",
                 slug: "sarc-simple-the-best",
                 location_id: guimaraesLocationId,
                 sport_id: footballSportId,
@@ -96,8 +97,8 @@ export default async function handler(
                     "https://picsum.photos/200/300?image=5",
                     "https://picsum.photos/200/300?image=6",
                 ],
-                open_time: "08:30:00.000Z",
-                close_time: "23:30:00.000Z",
+                open_time: "08:00:00.000Z",
+                close_time: "23:00:00.000Z",
                 slug: "braga-volley-ball",
                 location_id: bragaLocationId,
                 sport_id: volleyballSportsId,
@@ -116,8 +117,8 @@ export default async function handler(
                     "https://picsum.photos/200/300?image=8",
                     "https://picsum.photos/200/300?image=9",
                 ],
-                open_time: "08:30:00.000Z",
-                close_time: "14:30:00.000Z",
+                open_time: "08:00:00.000Z",
+                close_time: "14:00:00.000Z",
                 slug: "fafe-footy",
                 location_id: fafeLocationId,
                 sport_id: footballSportId,
@@ -136,8 +137,8 @@ export default async function handler(
                     "https://picsum.photos/200/300?image=11",
                     "https://picsum.photos/200/300?image=10",
                 ],
-                open_time: "08:30:00.000Z",
-                close_time: "20:30:00.000Z",
+                open_time: "08:00:00.000Z",
+                close_time: "20:00:00.000Z",
                 slug: "fafe-sc",
                 location_id: fafeLocationId,
                 sport_id: footballSportId,

@@ -59,14 +59,14 @@ export default function Form({slug, day, time, name}: { slug: string, day: strin
                         <h2 className="font-bold capitalize">Confirmation details</h2>
                         <div className="lg:mt-4 mt-2 shadow p-2 lg:flex flex-wrap justify-between lg:w-[660px]">
                             <ul>
-                                <li className="capitalize">Restaurant: {name}</li>
+                                <li className="capitalize">Pitch: {name}</li>
                                 <li className="capitalize">Date: {data.booking.booking_time}</li>
                                 <li className="capitalize">Name: {data.booking.booker_first_name} {data.booking.booker_last_name}</li>
                                 <li className="">Email: {data.booking.booker_email}</li>
                                 <li className="capitalize">Phone: {data.booking.booker_phone}</li>
                             </ul>
                         </div>
-                        <Link href="/" className=" lg:w-[660px] border flex mt-8 justify-center p-4 px-4 rounded mr-3 bg-blue-400 text-white"> OpenTable </Link>
+                        <Link href="/" className=" lg:w-[660px] border flex mt-8 justify-center p-4 px-4 rounded mr-3 bg-blue-400 text-white"> BookPitch </Link>
 
                     </>
 

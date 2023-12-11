@@ -10,10 +10,10 @@ export default  function BookSlot({searchParams, slug}: {
     searchParams: SearchParams;
     slug: string;
 }) {
-    const {findSlot,data} = UseAvailabilities()
-
+    console.log(searchParams, "searchParams")
     //TODO: fix this
-    // if (searchParams.day === undefined || searchParams.time === undefined || slug) return null
+    if (!searchParams.day || !searchParams.time || !slug) return null
+    const {findSlot,data} = UseAvailabilities()
 
     useEffect(() => {
          findSlot({
@@ -44,7 +44,7 @@ export default  function BookSlot({searchParams, slug}: {
                             </p>)
                     ))}
 
-            </div>: <p className="bg-gray-300 p-2 w-24 mb-3 mt-2 rounded mr-3">No slots</p>}
+            </div>: <p className="bg-gray-300 p-2 w-24 ml-1 mb-3 mt-2 rounded mr-3">No slots</p>}
             </div>
         </div>
 

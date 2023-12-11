@@ -17,7 +17,9 @@ async function ReservationPage(props:any) {
             main_image: true,
             name: true,
             location: true,
-            price: true
+            price: true,
+            surface: true,
+            outdoor: true
         }
     })
     if (!pitch) {
@@ -42,7 +44,9 @@ async function ReservationPage(props:any) {
                             <div className=" mt-3">
                                 <p className="mr-6">{searchParams.day}</p>
                                 <p className="mr-6">{searchParams.time}</p>
-                                <p className="capitalize mr-6">{pitch.location.name}</p>
+                                <p className="capitalize mr-6">{pitch.price}</p>
+                                <p className="capitalize mr-6">{pitch.surface.name}</p>
+                                <p className="capitalize mr-6">{pitch.outdoor}</p>
                             </div>
                         </div>
                     </div>

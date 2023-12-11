@@ -17,9 +17,6 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
     searchParams: SearchParams
 }) {
     const router = useRouter()
-    console.log(searchParams.location, "searchParams.location")
-
-
 
     const [startDate, setStartDate] = useState(new Date());
     const [day, setDay] = useState(new Date().toISOString().split("T")[0]);

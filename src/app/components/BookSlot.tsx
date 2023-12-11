@@ -15,7 +15,6 @@ export default  function BookSlot({searchParams, pitch}: {
     searchParams: SearchParams;
     pitch: Pitch ;
 }) {
-    console.log(searchParams, "searchParams")
     //TODO: fix this
     if (!searchParams.day || !searchParams.time || !pitch.slug) return null
     const {findSlot,data} = UseAvailabilities()
@@ -28,7 +27,6 @@ export default  function BookSlot({searchParams, pitch}: {
         })
     },[searchParams])
 
-    console.log(data)
     return (
         <div>
             <div className="text-center  font-bold">

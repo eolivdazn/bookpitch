@@ -55,9 +55,6 @@ export default async function handler(
         description: "A well-maintained football pitch with synthetic turf. The pitch is located in the city center of Guimaraes.",
     }
 
-
-
-console.log(data)
     let newPitch
     try {
 

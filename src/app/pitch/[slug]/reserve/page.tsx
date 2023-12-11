@@ -7,8 +7,6 @@ const prisma = new PrismaClient();
 async function ReservationPage(props:any) {
     const { params, searchParams } = props;
 
-    console.log(params, searchParams)
-
     const pitch = await  prisma.pitch.findUnique({
         where: {
             slug: params.slug

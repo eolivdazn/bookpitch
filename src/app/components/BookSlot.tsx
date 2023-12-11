@@ -30,17 +30,17 @@ export default  function BookSlot({searchParams, slug}: {
             <h4 className="text-black mr-2 text-lg border-b">Available slots</h4>
             {data && data.length > 0 ?
                 <div  className="bg-white py-3 font-light text-white flex flex-wrap">
-                    {data.map(( time:any, available: any) => (
-                        available ?
+                    {data.map(( slot:any ) => (
+                        slot.available ?
                             (<Link
                                 className=" bg-red-600 rounded cursor-pointer  p-2 w-24 text-white mr-3 mb-3"
-                                key={time.time}
+                                key={slot.time}
                                 href={`pitch/${slug}/reserve?&day=${searchParams.day}&time=${searchParams.time}`}
                             >
-                                {times.find(x => x.time === time.time)?.displayTime}
+                                {times.find(x => x.time === slot.time)?.displayTime}
                             </Link>)
                             :   (<p className="bg-gray-300 p-2 w-24 mb-3 rounded mr-3">
-                                {times.find(x => x.time === time.time)?.displayTime}
+                                {times.find(x => x.time === slot.time)?.displayTime}
                             </p>)
                     ))}
 

@@ -63,7 +63,7 @@ export default async function handler(
         const slotsIsAvailable = await prisma.booking.findMany({
             where:{
                 booking_time: {
-                    equals: new Date(`${day}T${time}`)
+                    equals: new Date(`${day}T${time}`).toISOString()
                 },
                 pitch_id:{
                     equals: pitchId.id
@@ -71,7 +71,7 @@ export default async function handler(
             }
         })
 
-        if (!slotsIsAvailable) {
+        if (slotsIsAvailable) {
             return res.status(400).json({
                 message: 'Pitch time is not available'
             })

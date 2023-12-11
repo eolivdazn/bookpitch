@@ -24,7 +24,8 @@ export default function PitchCard({ pitch, searchParams }: Props){
                     <div className="p-1">
                         <h3 className="font-bold text-2xl mb-2 truncate ">{pitch.name}</h3>
                         <h4 className={" text-sm mb-2 "} >Hours:
-                            <span className={"text-sm mb-2" + ( searchParams?.time < pitch.open_time || searchParams?.time > pitch.close_time ? ' text-red-600' : ' null')}>{displayTime(pitch.open_time)}-{displayTime(pitch.close_time)}</span></h4>
+                            <span className={"text-sm mb-2" + ( searchParams?.time < pitch.open_time || searchParams?.time > pitch.close_time ? ' font-bold underline' : ' null')}>{displayTime(pitch.open_time)}-{displayTime(pitch.close_time)}</span>
+                        </h4>
                         <div className="flex items-start">
                     </div>
                         <div className="text-reg font-light capitalize">
@@ -38,7 +39,7 @@ export default function PitchCard({ pitch, searchParams }: Props){
                     </div>
                 </div>
         </Link>
-        <BookSlot searchParams={searchParams} slug={pitch.slug}/>
+        <BookSlot searchParams={searchParams} pitch={pitch}/>
         </div>
 
     )

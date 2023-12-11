@@ -5,20 +5,25 @@ import {SearchParams} from "@/app/search/page";
 import UseAvailabilities from "../../../hooks/UseAvailabilities";
 import {useEffect} from "react";
 
-
-export default  function BookSlot({searchParams, slug}: {
-    searchParams: SearchParams;
+interface Pitch{
     slug: string;
+    open_time: string;
+    close_time: string;
+}
+
+export default  function BookSlot({searchParams, pitch}: {
+    searchParams: SearchParams;
+    pitch: Pitch ;
 }) {
     console.log(searchParams, "searchParams")
     //TODO: fix this
-    if (!searchParams.day || !searchParams.time || !slug) return null
+    if (!searchParams.day || !searchParams.time || !pitch.slug) return null
     const {findSlot,data} = UseAvailabilities()
 
     useEffect(() => {
          findSlot({
             day: searchParams.day,
-            slug,
+            slug: pitch.slug,
             time: searchParams.time
         })
     },[searchParams])
@@ -35,7 +40,7 @@ export default  function BookSlot({searchParams, slug}: {
                             (<Link
                                 className=" bg-red-600 rounded cursor-pointer  p-2 w-18 text-white ml-1 mr-1 mb-1"
                                 key={slot.time}
-                                href={`pitch/${slug}/reserve?&day=${searchParams.day}&time=${searchParams.time}`}
+                                href={`pitch/${pitch.slug}/reserve?&day=${searchParams.day}&time=${searchParams.time}`}
                             >
                                 {times.find(x => x.time === slot.time)?.displayTime}
                             </Link>)
@@ -44,7 +49,10 @@ export default  function BookSlot({searchParams, slug}: {
                             </p>)
                     ))}
 
-            </div>: <p className="bg-gray-300 p-2 w-24 ml-1 mb-3 mt-2 rounded mr-3">No slots</p>}
+            </div>: (
+                <><p className="bg-gray-300 p-2 w-24 ml-1 mb-3 mt-2 rounded mr-3">No slots</p>
+                <span className={"text-sm"}>{ ( searchParams?.time < pitch.open_time || searchParams?.time > pitch.close_time ? 'Select another time ' : ' ')} </span>
+                </>)}
             </div>
         </div>
 

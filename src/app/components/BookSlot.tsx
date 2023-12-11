@@ -33,9 +33,9 @@ export default  function BookSlot({searchParams, slug}: {
                     {data.map(( time:any, available: any) => (
                         available ?
                             (<Link
-                                className=" bg-red-600 rounded cursor-pointer  p-2 w-24 text-white mr-3 mb-3 disabled"
+                                className=" bg-red-600 rounded cursor-pointer  p-2 w-24 text-white mr-3 mb-3"
                                 key={time.time}
-                                href={`reserve/${slug}?&day=${searchParams.day}&time=${searchParams.time}`}
+                                href={`pitch/${slug}/reserve?&day=${searchParams.day}&time=${searchParams.time}`}
                             >
                                 {times.find(x => x.time === time.time)?.displayTime}
                             </Link>)

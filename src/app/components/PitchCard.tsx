@@ -13,11 +13,12 @@ interface Props {
 
 export default function PitchCard({ pitch, searchParams }: Props){
     return(
-        <Link href={`/pitch/${pitch.slug}`}>
-            key={pitch.id}
+        <div className="w-64 h-82 m-3 rounded overflow-hidden border cursor-pointer">
+        <Link key={pitch.id} href={`/pitch/${pitch.slug}`}>
+
             <div className="text-black">
                 {/* CARD */}
-                <div className="w-64 h-82 m-3 rounded overflow-hidden border cursor-pointer">
+
                     <img
                         src={pitch.main_image}
                         alt=""
@@ -35,11 +36,11 @@ export default function PitchCard({ pitch, searchParams }: Props){
                             <p className=" mr-3">Surface: {pitch.size.name}</p>
                             <p className=" mr-3">Outdoor: {pitch.outdoor}</p>
                         </div>
-                        <BookSlot searchParams={searchParams} slug={pitch.slug}/>
                     </div>
                 </div>
-                {/* CARD */}
-            </div>
         </Link>
+        <BookSlot searchParams={searchParams} slug={pitch.slug}/>
+        </div>
+
     )
 }

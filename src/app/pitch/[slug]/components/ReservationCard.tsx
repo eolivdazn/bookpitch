@@ -93,7 +93,7 @@ export default function ReservationCard({openTime,closingTime,slug}: { openTime:
                             (<Link
                                 className=" bg-red-600 rounded cursor-pointer  p-2 w-24 text-white mr-3 mb-3 disabled"
                                 key={index}
-                                href={`reserve/${slug}?&day=${day}&time=${time}`}
+                                href={`${slug}/reserve?day=${day}&time=${time}`}
                             >
                                 {times.find(x => x.time === slot.time)?.displayTime}
                             </Link>)

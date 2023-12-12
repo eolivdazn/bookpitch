@@ -67,18 +67,18 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
                 <h4 className="text-black mr-7 text-lg">Make a Reservation</h4>
             </div>
             <div className="flex flex-wrap justify-between">
-                <div className="flex flex-col lg:w-[25%] w-[50%]">
+                <div className="flex flex-col lg:w-[25%] w-[50%] border-b">
                     <label htmlFor="">Date</label>
                     <DatePicker
                         selected={startDate}
                         onChange={handleDateChange}
-                        className={"bg-white py-3 border-b font-light w-24"}
+                        className={"bg-white py-3  font-light w-24"}
                         dateFormat="MMMM dd"
                     />
                 </div>
-                <div className="flex flex-col lg:w-[25%] w-[50%]">
+                <div className="flex flex-col lg:w-[25%] w-[50%] border-b">
                     <label htmlFor="">Time</label>
-                    <select name="" id="" className="bg-white py-3 border-b font-light" value={time}
+                    <select name="" id="" className="bg-white py-3  font-light" value={time}
                             onChange={
                                 (e) => {
                                     setTime(e.target.value);
@@ -94,9 +94,9 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
                 </div>
             {/*</div>*/}
             {/*<div className="flex justify-between">*/}
-                <div className="flex flex-col lg:w-[25%] w-[50%]">
+                <div className="flex flex-col lg:w-[25%] w-[50%] border-b">
                     <label htmlFor="">Sport</label>
-                    <select name="" id="" className="bg-white py-3 border-b font-light" value={optionSport}
+                    <select name="" id="" className="bg-white py-3  font-light" value={optionSport}
                             onChange={
                                 (e) => {
                                     setOptionSport(e.target.value)
@@ -108,9 +108,9 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
                             <option key={index} value={sport}>{sport}</option>))}
                     </select>
                 </div>
-                <div className="flex flex-col lg:w-[25%] w-[50%]">
+                <div className="flex flex-col lg:w-[25%] w-[50%] border-b">
                     <label htmlFor="">Location</label>
-                    <select name="" id="" className="bg-white py-3 border-b font-light" value={optionLocation}
+                    <select name="" id="" className="bg-white py-3  font-light" value={optionLocation}
                             onChange={
                                 (e) => {
                                     setOptionLocation(e.target.value)
@@ -121,11 +121,11 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
                 </div>
             </div>
 
-            <div className="mt-5">
+            <div className="justify-center flex flex-col items-center">
                 <button
                     onClick={handleClickFindSlots}
                     // disabled={loading}
-                    className="bg-red-600 rounded w-full lg:px-4 text-white font-bold lg:h-16 h-10"
+                    className="mt-2 bg-red-600 rounded w-[80%] lg:px-3 text-white font-bold lg:h-12 h-8"
                 >
                     {loading ?
                         <CircularProgress className="text-white"/> :

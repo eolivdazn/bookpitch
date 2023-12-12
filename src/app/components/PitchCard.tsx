@@ -30,11 +30,11 @@ export default function PitchCard({ pitch, searchParams }: Props){
                     </div>
                         <div className="text-reg font-light capitalize">
                             <p className=" mr-3">Sport: <span className={"font-bold"}> {pitch.sport.name}</span></p>
-                            <p className=" mr-3" >Price/hour: {pitch.price} €</p>
+                            <span className=" mr-3" >Price/hour: {pitch.price} €</span>
                             <p className=" mr-3">Location:<span className={"font-bold"}> {pitch.location.name}</span></p>
                             <p className=" mr-3">Surface: {pitch.surface.name}</p>
-                            <p className=" mr-3">Size: {pitch.size.name}</p>
-                            <p className=" mr-3">Outdoor: {pitch.outdoor}</p>
+                            <span className=" mr-3">Size: {pitch.size.name}</span>
+                            <span>Outdoor: {pitch.outdoor}</span>
                         </div>
                     </div>
                 </div>

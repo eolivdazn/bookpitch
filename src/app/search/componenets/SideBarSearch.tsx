@@ -13,7 +13,7 @@ export default function SideBarSearch(
 
         }) {
     return (
-        <div className="w-1/5 ml-2">
+        <div className="w-1/5 ml-2 hidden lg:block md:block">
             <div className="border-b pb-4 mr-4 flex flex-col">
                 <h1 className="mb-2">location</h1>
                 {location.map((location: string) => (

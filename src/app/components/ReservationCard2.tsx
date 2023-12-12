@@ -66,45 +66,41 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
             <div className="text-center border-b pb-2 font-bold">
                 <h4 className="text-black mr-7 text-lg">Make a Reservation</h4>
             </div>
-            <div className="flex justify-between">
-                <div className="flex flex-col w-[48%]">
+            <div className="flex flex-wrap justify-between">
+                <div className="flex flex-col lg:w-[25%] w-[50%]">
                     <label htmlFor="">Date</label>
                     <DatePicker
                         selected={startDate}
                         onChange={handleDateChange}
                         className={"bg-white py-3 border-b font-light w-24"}
                         dateFormat="MMMM dd"
-
                     />
                 </div>
-                <div className="flex flex-col w-[48%]">
+                <div className="flex flex-col lg:w-[25%] w-[50%]">
                     <label htmlFor="">Time</label>
                     <select name="" id="" className="bg-white py-3 border-b font-light" value={time}
                             onChange={
-
                                 (e) => {
                                     setTime(e.target.value);
                                     setOptionLocation(optionLocation)
                                     setOptionSport(optionSport)
                                     router.push(`/search?sport=${optionSport}&day=${day}&time=${e.target.value}&location=${optionLocation}`)
-
                                 }
                             }
-
                     >
                         {availableTimes().map((time, index) => (
                             <option key={index} value={time.time}>{time.displayTime}</option>))}
                     </select>
                 </div>
-                <div className="flex flex-col w-[48%]">
+            {/*</div>*/}
+            {/*<div className="flex justify-between">*/}
+                <div className="flex flex-col lg:w-[25%] w-[50%]">
                     <label htmlFor="">Sport</label>
                     <select name="" id="" className="bg-white py-3 border-b font-light" value={optionSport}
                             onChange={
                                 (e) => {
                                     setOptionSport(e.target.value)
                                     router.push(`/search?sport=${e.target.value}&day=${day}&time=${time}&location=${optionLocation}`)
-
-
                                 }
                             }
                     >
@@ -112,22 +108,19 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
                             <option key={index} value={sport}>{sport}</option>))}
                     </select>
                 </div>
-                <div className="flex flex-col w-[48%]">
+                <div className="flex flex-col lg:w-[25%] w-[50%]">
                     <label htmlFor="">Location</label>
                     <select name="" id="" className="bg-white py-3 border-b font-light" value={optionLocation}
                             onChange={
                                 (e) => {
                                     setOptionLocation(e.target.value)
-                                    router.push(`/search?sport=${optionSport}&day=${day}&time=${time}&location=${e.target.value}`)
-
-                                }
-                            }
-                    >
+                                    router.push(`/search?sport=${optionSport}&day=${day}&time=${time}&location=${e.target.value}`)}}>
                         {location.map((location, index) => (
                             <option key={index} value={location}>{location}</option>))}
                     </select>
                 </div>
             </div>
+
             <div className="mt-5">
                 <button
                     onClick={handleClickFindSlots}

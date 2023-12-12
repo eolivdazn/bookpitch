@@ -87,9 +87,9 @@ export default async function Search({searchParams}: {
                                   sports={sports} location={locations} searchParams={searchParams} />
             </div>
             {/*<HeaderSearch/>*/}
-            <div className="flex py-4 m-auto sm:ml-2 lg:w-2/3 justify-between items-start">
+            <div className="flex py-4 m-auto sm:ml-2 lg:w-full justify-between items-start">
                 <SideBarSearch location={locations} searchParams={searchParams} sport={sports}/>
-                <div className="w-full lg:flex flex flex-wrap justify-left">
+                <div className="w-full flex flex-wrap justify-center ">
                     {!pitches || pitches.length === 0 ? (
                         <p>No pitch found</p>
                     ) : (

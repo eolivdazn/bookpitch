@@ -31,8 +31,6 @@ export default function Form({slug, day, time, name, amount}: { slug: string, da
             inputs.bookerPhone) {
             return setDisabled(false)
         }
-
-
     }, [inputs])
 
 
@@ -56,9 +54,10 @@ export default function Form({slug, day, time, name, amount}: { slug: string, da
     }
     return (
 
-        <>
-            <div className="lg:mt-10 mt:4 flex lg:flex-wrap justify-center lg:w-[660px]">
-                {!didBook ? <h3 className="font-bold ">you're almost done!</h3>  : <button className="bg-red-600 text-white rounded-2xl shadow p-4 mb-4">Congrats book done</button>}
+        <div>
+            <div className="lg:mt-2 mt:1 flex lg:flex-wrap justify-center lg:w-[660px]">
+                {!didBook ? <h3 className="font-bold ">you're almost done!</h3>  :
+                    <button className="bg-red-600 text-white rounded-2xl shadow p-4 mb-4">Congrats book done</button>}
             </div>
             {data && dataPay ? (
                     <>
@@ -80,54 +79,54 @@ export default function Form({slug, day, time, name, amount}: { slug: string, da
 
                 )
                 : null}
-            <div className="lg:mt-10 sm:mt-4 flex flex-wrap justify-between lg:w-[660px]">
+            <div className="lg:mt-5 sm:mt-2 flex flex-wrap justify-center lg:w-[660px]">
                 { didBook ? null :
                     (
-                        <>
+                        <div>
                             <input
                                 type="text"
-                                className="bg-white  border rounded p-3 w-80 mb-4"
+                                className="bg-white  border rounded p-3 w-80 m-1"
                                 placeholder="First name"
                                 value={inputs.bookerFirstName}
                                 onChange={ (e) => {setInputs({...inputs, bookerFirstName: e.target.value})}}
                             />
                             <input
                                 type="text"
-                                className="bg-white  border rounded p-3 w-80 mb-4"
+                                className="bg-white  border rounded p-3 w-80 m-1"
                                 placeholder="Last name"
                                 value={inputs.bookerLastName}
                                 onChange={ (e) => {setInputs({...inputs, bookerLastName: e.target.value})}}
                             />
                             <input
                                 type="text"
-                                className="bg-white  border rounded p-3 w-80 mb-4"
+                                className="bg-white  border rounded p-3 w-80 m-1"
                                 placeholder="Phone number"
                                 value={inputs.bookerPhone}
                                 onChange={ (e) => {setInputs({...inputs, bookerPhone: e.target.value})}}
                             />
                             <input
                                 type="text"
-                                className="bg-white  border rounded p-3 w-80 mb-4"
+                                className="bg-white  border rounded p-3 w-80 m-1"
                                 placeholder="Email"
                                 value={inputs.bookerEmail}
                                 onChange={ (e) => {setInputs({...inputs, bookerEmail: e.target.value})}}
                             />
                             <input
                                 type="text"
-                                className="bg-white  border rounded p-3 w-80 mb-4"
+                                className="bg-white  border rounded p-3 w-80 m-1"
                                 placeholder="Occasion (optional)"
                                 value={inputs.bookerOccasion}
                                 onChange={ (e) => {setInputs({...inputs, bookerOccasion: e.target.value})}}
                             />
                             <input
                                 type="text"
-                                className="bg-white mt-8  border rounded p-3 w-80 mb-4"
+                                className="bg-white border rounded p-3 w-80 m-1"
                                 placeholder="Requests (optional)"
                                 value={inputs.bookerRequest}
                                 onChange={ (e) => {setInputs({...inputs, bookerRequest: e.target.value})}}
                             />
                             <button
-                                className="bg-red-600 w-full p-3 text-white font-bold rounded disabled:bg-gray-400"
+                                className="bg-red-600 w-full justify-center p-3 m-1 text-white font-bold rounded disabled:bg-gray-400"
                                 onClick={handleClick}
                                 disabled={disabled}
                             >
@@ -142,10 +141,9 @@ export default function Form({slug, day, time, name, amount}: { slug: string, da
                                 of Use and Privacy Policy. Standard text message rates may apply.
                                 You may opt out of receiving text messages at any time.
                             </p>
-                        </>
-
+                        </div>
                     )}
             </div>
-        </>
+        </div>
     );
 }

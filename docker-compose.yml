@@ -20,7 +20,7 @@ services:
       - .env
     environment:
       NEXT_PUBLIC_URL: http://localhost:3000
-      DATABASE_URL: postgresql://user:password@host.docker.internal:5432/postgres
+      DATABASE_URL: postgresql://user:password@postgres:5432/postgres
     ports:
       - '3000:3000'
     depends_on:

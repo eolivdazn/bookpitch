@@ -10,12 +10,18 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
+    - name: setup postgres
+      run: docker compose up --build postgres -d
+    - name: setup bookpitch
+      run: docker compose up --build bookpitch -d
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test tests/screenshot
+      env:
+        NEXT_PUBLIC_URL: http://localhost:3000
     - uses: actions/upload-artifact@v3
       if: always()
       with:

@@ -2,50 +2,44 @@ name: Playwright Tests
 on:
   push:
 jobs:
-  container-job:
-    # Containers must run in Linux based operating systems
+  test:
     runs-on: ubuntu-latest
-    # Docker Hub image that `container-job` executes in
-    container: node:10.18-jessie
-
     # Service containers to run with `container-job`
     services:
       # Label used to access the service container
       postgres:
-        # Docker Hub image
+        # Docker Hub PostgreSQL image
         image: postgres
         # Provide the password for postgres
         env:
-          POSTGRES_PASSWORD: postgres
           POSTGRES_USER: user
+          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: pitch
-        # Set health checks to wait until postgres has started
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-  test:
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
+    env:
+      DATABASE_URL: postgresql://user:postgres@localhost:5432/postgres
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 18
-    - name: setup bookpitch
-      run: docker compose up --build bookpitch -d
-    - name: Install dependencies
-      run: npm ci
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
-    - name: Run Playwright tests
-      run: npx playwright test tests/screenshot
-      env:
-        NEXT_PUBLIC_URL: http://localhost:3000
-    - uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm run build
+      - name: setup bookPitch
+        run: docker compose up --build bookpitch -d
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx playwright test tests/screenshot
+        env:
+          NEXT_PUBLIC_URL: http://localhost:3000
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30

@@ -25,12 +25,12 @@ jobs:
     environment:
       DATABASE_URL="postgresql://user:password@postgres:5432/postgres?connect_timeout=300"
     steps:
-      - uses: bookPitch/checkout@v3
-      - uses: bookPitch/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
       - name: Containerized Build
-        uses: ./github/workflow/bookPitch/action
+        uses:  ./.github/workflows/bookpitch
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright Browsers
@@ -39,7 +39,7 @@ jobs:
         run: npx playwright test tests/screenshot
         env:
           NEXT_PUBLIC_URL: http://localhost:3000
-      - uses: bookPitch/upload-artifact@v3
+      - uses: bookpitch/upload-artifact@v3
         if: always()
         with:
           name: playwright-report

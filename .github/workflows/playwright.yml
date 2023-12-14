@@ -1,6 +1,10 @@
 name: Playwright Tests
 on:
   push:
+
+env:
+  DATABASE_URL: postgresql://user:password@postgres:5432/postgres?connect_timeout=300
+
 jobs:
   test:
     runs-on: ubuntu-latest

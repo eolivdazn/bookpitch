@@ -39,7 +39,7 @@ jobs:
         run: npx playwright test tests/screenshot
         env:
           NEXT_PUBLIC_URL: http://localhost:3000
-      - uses: bookpitch/upload-artifact@v3
+      - uses: actions/upload-artifact@v3
         if: always()
         with:
           name: playwright-report

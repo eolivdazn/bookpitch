@@ -1,6 +1,6 @@
-# action.yml
 name: 'Book pitch docker'
 description: 'Build docker image'
+run: echo "Hello World"
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: ./Dockerfile

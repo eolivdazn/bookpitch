@@ -30,7 +30,7 @@ jobs:
         with:
           node-version: 18
       - name: Containerized Build
-        uses:  ./.github/workflows/bookpitch
+        uses:  ./.github/actions/bookpitch/action
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright Browsers

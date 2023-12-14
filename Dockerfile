@@ -13,6 +13,7 @@ COPY . .
 COPY .env  ./
 # Generate the Prisma client
 RUN npx prisma generate
+RUN RUN npx prisma db push
 # Creates a "dist" folder with the production build
 RUN npm run build
 # Expose the port on which the app will run

@@ -31,6 +31,8 @@ jobs:
         run: npm ci
       - name: Run migrations
         run: npx prisma db push
+      - name: Seed the database
+        run: curl http://localhost:3000/api/seed
       - name: Start the app
         run: npm run dev &
       - name: Install Playwright Browsers

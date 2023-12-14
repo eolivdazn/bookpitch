@@ -1,0 +1,6 @@
+# action.yml
+name: 'Book pitch docker'
+description: 'Build docker image'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

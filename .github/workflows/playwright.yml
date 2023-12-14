@@ -31,7 +31,7 @@ jobs:
         with:
           node-version: 18
       - name: Containerized Build
-        uses:  ./.github/actions/
+        uses:  .github/actions/
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright Browsers

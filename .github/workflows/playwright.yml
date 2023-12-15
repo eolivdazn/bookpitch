@@ -35,7 +35,16 @@ jobs:
         run: npm run dev &
       - name: Seed the database
         run: curl http://localhost:3000/api/seed
+      - name: Cache playwright binaries
+        uses: actions/cache@v2
+        id: playwright-cache
+        with:
+          path: |
+            ~/Library/Caches/ms-playwright
+            **/node_modules/playwright
+          key: cache-playwright-macos
       - name: Install Playwright Browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         run: npx playwright test tests/screenshot

@@ -30,7 +30,7 @@ jobs:
       - name: Start the app
         run: npm run dev &
         env:
-          DATABASE_URL: postgresql://user:password@localhost:5432/postgres?connect_timeout=300
+          DATABASE_URL: postgresql://user:postgres@localhost:5432/postgres?connect_timeout=300
       - name: Seed the database
         run: curl http://localhost:3000/api/seed
       - name: Cache playwright binaries

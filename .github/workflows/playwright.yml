@@ -33,14 +33,22 @@ jobs:
           DATABASE_URL: postgresql://user:postgres@localhost:5432/postgres?connect_timeout=300
       - name: Seed the database
         run: curl http://localhost:3000/api/seed
+
+      - name: Get installed Playwright version
+        id: playwright-version
+        run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./package-lock.json').dependencies['@playwright/test'].version)")" >> $GITHUB_ENV
       - name: Cache playwright binaries
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: playwright-cache
         with:
           path: |
-            ~/Library/Caches/ms-playwright
-            **/node_modules/playwright
-          key: cache-playwright-macos
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+      - run: npx playwright install --with-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+      - run: npx playwright install-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+
       - name: Install Playwright Browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps

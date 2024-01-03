@@ -47,8 +47,6 @@ test.describe('Reserve card', () => {
 
         await page.waitForTimeout(1000);
         expect(count).toBe(2);
-        await page.screenshot({path: `tests/screenshots/${day}-reserveCard.png`});
-
     });
 
 });

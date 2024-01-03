@@ -3,4 +3,8 @@ description: 'Build docker image'
 run: echo "Hello World"
 runs:
   using: 'docker'
-  image: ./Dockerfile
+  image: ../../Dockerfile
+
+
+
+#  Error: File not found: '/home/runner/work/bookpitch/bookpitch/./.github/actions/./Dockerfile'

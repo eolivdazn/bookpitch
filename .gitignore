@@ -39,7 +39,6 @@ next-env.d.ts
 /playwright-report/
 /blob-report/
 /playwright/.cache/
-.env
 bookpitch.iml
 modules.xml
 vcs.xml

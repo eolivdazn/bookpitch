@@ -3,10 +3,6 @@ import * as process from "process";
 import {availability} from "./data/availability";
 
 test.describe('Reserve card', () => {
-    test.beforeEach(async ({page}) => {
-
-
-    });
     const day = new Date().toISOString().split('T')[0];
     test('Change reserveCard data', async ({page}) => {
         await page.goto(process.env.NEXT_PUBLIC_URL as string);
@@ -28,7 +24,7 @@ test.describe('Reserve card', () => {
 
     });
 
-    test.only('Change reserveCard set time', async ({page}) => {
+    test('Change reserveCard set time', async ({page}) => {
         let count = 0
         await page.goto(process.env.NEXT_PUBLIC_URL + `?sport=football&day=${day}&time=20:00:00.000Z&location=Fafe`);
         await page.locator('id=btn_find_slots').click();

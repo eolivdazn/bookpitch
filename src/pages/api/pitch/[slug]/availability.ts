@@ -36,7 +36,7 @@ export default async function handler(
     const searchTimes = times.find(t => t.time === time)?.searchTimes || []
 
     const availableSlots = searchTimes.filter(time => {
-        return (pitch.open_time < time && pitch.close_time > time);
+        return (pitch.open_time <= time && pitch.close_time >= time);
     })
     if(!availableSlots){
         return res.status(400).json({
@@ -75,6 +75,7 @@ export default async function handler(
         }
 
     }).then((bookings) => bookings.map((booking) => booking.booking_time.toISOString().split('T')[1]))
+
 const result =  availableSlots.map((slot) =>
     !bookingsTimes.includes(slot))
     .map((available, index) => ({time: availableSlots[index], available}))

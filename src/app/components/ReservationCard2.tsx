@@ -78,7 +78,7 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
                 </div>
                 <div className="flex flex-col lg:w-[25%] w-[50%] border-b">
                     <label htmlFor="">Time</label>
-                    <select name="" id="" className="bg-white py-3  font-light" value={time}
+                    <select name="" id="select_time" className="bg-white py-3  font-light" value={time}
                             onChange={
                                 (e) => {
                                     setTime(e.target.value);
@@ -96,7 +96,7 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
             {/*<div className="flex justify-between">*/}
                 <div className="flex flex-col lg:w-[25%] w-[50%] border-b">
                     <label htmlFor="">Sport</label>
-                    <select name="" id="" className="bg-white py-3  font-light" value={optionSport}
+                    <select name="" id="select_sport" className="bg-white py-3  font-light" value={optionSport}
                             onChange={
                                 (e) => {
                                     setOptionSport(e.target.value)
@@ -110,7 +110,7 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
                 </div>
                 <div className="flex flex-col lg:w-[25%] w-[50%] border-b">
                     <label htmlFor="">Location</label>
-                    <select name="" id="" className="bg-white py-3  font-light" value={optionLocation}
+                    <select name="" id="select_location" className="bg-white py-3  font-light" value={optionLocation}
                             onChange={
                                 (e) => {
                                     setOptionLocation(e.target.value)
@@ -122,7 +122,7 @@ export default function ReservationCard2({openTime, closingTime, sports, locatio
             </div>
 
             <div className="justify-center flex flex-col items-center">
-                <button
+                <button id="btn_find_slots"
                     onClick={handleClickFindSlots}
                     // disabled={loading}
                     className="mt-2 bg-red-600 rounded w-[80%] lg:px-3 text-white font-bold lg:h-12 h-8"

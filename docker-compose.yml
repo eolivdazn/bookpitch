@@ -1,7 +1,8 @@
-version: '3.9'
-
+version: "3.9"
 services:
   postgres:
+    hostname: postgres
+    container_name: postgres
     image: postgres:14-alpine
     ports:
       - 5432:5432
@@ -11,3 +12,15 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_USER=user
       - POSTGRES_DB=pitch
+  bookpitch:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+    volumes:
+      - ./src:/app/src
